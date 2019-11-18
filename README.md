@@ -5,12 +5,12 @@ Productivity Booster is the perfect tool to improve overall clicking ability to 
 
 ## Functionality & MVP
 With ProductivityBooster, players will be allowed to:
-[ ] Start, pause, and restart the game
-[ ] Click on targets
+- [ ] Start, pause, and restart the game
+- [ ] Click on targets
 
 In addition, this project will include:
-[ ] An about section describing how to play
-[ ] A production README
+- [ ] An about section describing how to play
+- [ ] A production README
 
 ## Architecture and Technologies
 This project will be implemented with the following technologies:
@@ -35,6 +35,6 @@ In addition to the entry file, there will be three scripts involved in this proj
 **Day 4**: Style the frontend, making it polished and professional.
 
 ## Bonus features
-[ ] Leaderboards for highscores
-[ ] Different game modes/variations
-[ ] Multiplayer
+- [ ] Leaderboards for highscores
+- [ ] Different game modes/variations
+- [ ] Multiplayer
