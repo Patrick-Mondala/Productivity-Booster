@@ -1,0 +1,49 @@
+<head>
+  <script type="application/javascript" src="main.js"></script>
+</head>
+<body style="
+display: flex;
+justify-content: center;
+background: url(main-background.gif) no-repeat center center fixed; 
+background-size: cover;">
+  <div style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  height: 648px;
+  width: 1000px;">
+    <header style="
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-image: linear-gradient(#3b495c, #171b20);">
+      <h1 style="text-align: center; font-family: Arial;">
+        <span style="color: white; font-weight: bold;">Productivity</span><span style="color: darkorange; font-weight: bold;">Booster</span>
+      </h1>
+    </header>
+    <div style="
+      display: flex;
+      justify-content: center;
+      width: 100%; 
+      background-color: #CCCCCC;">
+      <a href="https://github.com/Patrick-Mondala"
+      style="text-decoration: none;
+      color: #4477BB;">Github</a>
+    </div>
+    <div class="game-container">
+      <canvas id="background" width="1000" height="550"
+      style="border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;"></canvas>
+      <canvas id="performance" width="1000" height="550"
+      style="border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      margin-top: -550px;"></canvas>
+      <canvas id="game" width="1000" height="550"
+      style="border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      margin-top: -550px;"></canvas>
+    </div>
+  </div>
+</body>

@@ -15,7 +15,7 @@ In addition, this project will include:
 ## Architecture and Technologies
 This project will be implemented with the following technologies:
 * `Javascript` for game logic
-* `Browserify` to bundle js files
+* `Webpack` to bundle js files
 
 In addition to the entry file, there will be three scripts involved in this project:
 
