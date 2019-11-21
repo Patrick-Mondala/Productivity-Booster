@@ -7,6 +7,7 @@ function Timer() {
     if (minutes < 1) return `00:${seconds}`;
     if (minutes < 10 && seconds < 10) return `0${minutes}:0${seconds}`;
     if (minutes < 10) return `0${minutes}:${seconds}`;
+    if (seconds < 10) return `${minutes}:0${seconds}`;
     return `${minutes}:${seconds}`;
   }
 }
