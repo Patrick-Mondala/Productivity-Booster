@@ -47,6 +47,8 @@ Healthbar.prototype.loseHp = function () {
   if (this.hp < 1) {
     this.performanceObj.timer.stopped = true;
     this.performanceObj.accuracy.stopped = true;
+    this.performanceObj.targetSpawners.forEach(spawner => spawner.stopped = true);
+    this.performanceObj.targetSpawners = [];
   }
 }
 

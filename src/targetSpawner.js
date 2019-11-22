@@ -8,8 +8,11 @@ function TargetSpawner(gameCtx, performance, timer) {
 }
 
 TargetSpawner.prototype.start = function () {
+  let thisTargetSpawner = this;
   let spawnInterval = setInterval(() => {
-    this.spawnTarget();
+    if (!thisTargetSpawner.stopped) {
+      this.spawnTarget();
+    }
   }, Math.floor(Math.random() * 10000) + 1000);
 };
 

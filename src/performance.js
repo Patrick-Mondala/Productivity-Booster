@@ -11,7 +11,9 @@ function Performance(gameCtx, performanceCtx) {
   this.timer = new Timer();
   this.accuracy = new Accuracy(performanceCtx);
   this.targets = {};
+  this.targetSpawners = [];
   this.targetsSpawned = 0;
+  this.stopped = false;
   this.difficultyStart();
 }
 
@@ -24,10 +26,15 @@ Performance.prototype.draw = function (ctx) {
 
 Performance.prototype.difficultyStart = function () {
   let firstTargetSpawner = new TargetSpawner(this.gameCtx, this, this.timer);
+  this.targetSpawners.push(firstTargetSpawner);
   firstTargetSpawner.start();
+  let performance = this;
   let beginDifficulty = setInterval(() => {
-    let newTargetSpawner = new TargetSpawner(this.gameCtx, this, this.timer);
-    newTargetSpawner.start();
+    if (!performance.stopped) {
+      let newTargetSpawner = new TargetSpawner(this.gameCtx, this, this.timer);
+      performance.targetSpawners.push(newTargetSpawner);
+      newTargetSpawner.start();
+    }
   }, 15000);
 }
 
