@@ -1,7 +1,10 @@
-function Healthbar(performanceCtx, performanceObj) {
+function Healthbar(performanceCtx, performanceObj, game) {
   this.hp = 8;
   this.performanceCtx = performanceCtx;
   this.performanceObj = performanceObj;
+  this.game = game;
+  this.menu = document.getElementById("menu");
+  this.stopped = false;
 }
 
 const healthbar = new Image();
@@ -35,8 +38,10 @@ Healthbar.prototype.draw = function () {
   healthbar.src = "healthbar.png";
   let healthbarObj = this;
   healthbar.onload = function () {
-    ctx.clearRect(5, 5, 500, 41);
-    ctx.drawImage(healthbar, healthbarObj.getBar()[0], healthbarObj.getBar()[1], 1051, 41, 5, 5, 500, 41);
+    if (!healthbarObj.stopped) {
+      ctx.clearRect(5, 5, 500, 41);
+      ctx.drawImage(healthbar, healthbarObj.getBar()[0], healthbarObj.getBar()[1], 1051, 41, 5, 5, 500, 41);
+    }
   };
 };
 
@@ -44,12 +49,15 @@ Healthbar.prototype.loseHp = function () {
   const ctx = this.performanceCtx;
   this.hp -= 1;
   this.draw(ctx);
-  if (this.hp < 1) {
+  if (this.hp < 1 && !this.stopped) {
+    this.stopped = true;
+    this.game.stopped = true;
     this.performanceObj.timer.stopped = true;
     this.performanceObj.accuracy.stopped = true;
     this.performanceObj.stopped = true;
     this.performanceObj.targetSpawners.forEach(spawner => spawner.stopped = true);
     this.performanceObj.targetSpawners = [];
+    this.menu.setAttribute("style", "display: flex; justify-content: center; align-items: center; position: absolute; top: 106px; height: 550px; width: 1000px;");
   }
 }
 

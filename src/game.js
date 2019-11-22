@@ -4,11 +4,14 @@ function Game(backgroundLayer, performanceLayer, gameLayer) {
   this.backgroundCtx = backgroundLayer.getContext("2d");
   this.performanceCtx = performanceLayer.getContext("2d");
   this.gameCtx = gameLayer.getContext("2d");
-  this.performanceObj = new Performance(gameLayer.getContext("2d"), performanceLayer.getContext("2d"));
+  this.performanceObj = new Performance(gameLayer.getContext("2d"), performanceLayer.getContext("2d"), this);
+  this.stopped = false;
 
   let game = this;
   gameLayer.addEventListener("mousedown", function (e) {
-    game.checkIfTargetsClicked(gameLayer, e);
+    if (!this.stopped) {
+      game.checkIfTargetsClicked(gameLayer, e);
+    }
   });
 }
 
@@ -34,9 +37,20 @@ Game.prototype.draw = function () {
   const background = new Image();
   background.onload = function () {
     currentGame.backgroundCtx.drawImage(background, 0, 0, 2560, 1600, 0, 0, 1000, 550);
-    currentGame.performanceObj.draw(currentGame.performanceCtx);
   };
   background.src = "macwallpaper.jpg";
+}
+
+Game.prototype.start = function () {
+  this.draw();
+  this.performanceObj.gameStart();
+}
+
+Game.prototype.stop = function () {
+  this.stopped = true;
+  this.performanceObj.healthbar.stopped = true;
+  this.performanceObj.accuracy.stopped = true;
+  this.performanceObj.stopped = true;
 }
 
 module.exports = Game;
