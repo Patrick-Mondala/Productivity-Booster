@@ -1,4 +1,5 @@
-function Target(pos, combo, accuracy, health) {
+function Target(id, pos, combo, accuracy, health, performance) {
+  this.id = id;
   this.pos = pos;
   this.size = 3;
   this.iconCol = getRandomIconPos()[0];
@@ -7,6 +8,7 @@ function Target(pos, combo, accuracy, health) {
   this.combo = combo;
   this.accuracy = accuracy;
   this.health = health;
+  this.performance = performance;
   this.accuracy.addTarget();
 }
 
@@ -26,7 +28,8 @@ Target.prototype.draw = function (ctx, timer, clickedSize) {
   const size = this.size;
   if (this.size < 2) {
     ctx.clearRect(x - 2, y - 2, (clickedSize || 0) + 5, (clickedSize || 0) + 5);
-    if (!clickedSize) this.missedClick();
+    delete this.performance.targets[this.id];
+    if (!clickedSize) this.health.loseHp();
     delete target;
     clearInterval(timer);
   } else {
@@ -66,24 +69,17 @@ Target.prototype.checkClicked = function (ctx, clickedPos) {
   const clickedX = clickedPos[0];
   const clickedY = clickedPos[1];
   if (clickedX >= x && clickedX <= xClickableLimit && clickedY >= y && clickedY <= yClickableLimit) {
-    this.combo.addCombo();
-    this.accuracy.addHit();
     this.clickedOn(ctx);
-  } else {
-    this.missedClick();
+    return true;
   }
 };
 
 Target.prototype.clickedOn = function (ctx) {
   const clickedSize = this.size;
+  this.combo.addCombo();
+  this.accuracy.addHit();
   this.size = 0;
   this.draw(ctx, this.timer, clickedSize);
-}
-
-Target.prototype.missedClick = function() {
-  this.combo.resetCombo();
-  this.accuracy.addMiss();
-  this.health.loseHp();
 }
 
 module.exports = Target;

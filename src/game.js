@@ -16,7 +16,17 @@ Game.prototype.checkIfTargetsClicked = function (canvas, event) {
   let rect = canvas.getBoundingClientRect();
   let x = Math.floor(event.clientX - rect.left);
   let y = Math.floor(event.clientY - rect.top);
-  this.performanceObj.targets.forEach(target => target.checkClicked(this.gameCtx, [x, y]));
+  let completeMiss = true;
+  Object.values(this.performanceObj.targets).forEach(target => {
+    if (target.checkClicked(this.gameCtx, [x, y])) {
+      completeMiss = false;
+    }
+  });
+  if (completeMiss) {
+    this.performanceObj.combo.resetCombo();
+    this.performanceObj.accuracy.addMiss();
+    this.performanceObj.healthbar.loseHp();
+  }
 };
 
 Game.prototype.draw = function () {

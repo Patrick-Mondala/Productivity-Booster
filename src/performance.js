@@ -1,17 +1,17 @@
-const Target = require("./target");
 const Healthbar = require("./healthbar");
 const Combo = require("./combo");
 const Timer = require("./timer");
 const Accuracy = require("./accuracy");
+const TargetSpawner = require("./targetSpawner");
 
 function Performance(gameCtx, performanceCtx) {
   this.healthbar = new Healthbar(performanceCtx);
   this.combo = new Combo(performanceCtx, this.healthbar);
   this.timer = new Timer();
   this.accuracy = new Accuracy(performanceCtx);
-  let testTarget = new Target([500, 200], this.combo, this.accuracy, this.healthbar);
-  testTarget.spawn(gameCtx);
-  this.targets = [testTarget];
+  this.targets = {};
+  this.targetSpawner = new TargetSpawner(gameCtx, this, this.timer);
+  this.targetSpawner.start();
 }
 
 Performance.prototype.draw = function (ctx) {

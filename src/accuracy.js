@@ -8,7 +8,6 @@ function Accuracy(performanceCtx) {
 Accuracy.prototype.getAccuracy = function () {
   let accuracyVal = this.totalHits / (this.totalTargets + this.totalMisses);
   if (!isFinite(accuracyVal)) accuracyVal = 1;
-  console.log(accuracyVal);
   return ((accuracyVal) * 100).toString().slice(0,4) || 0;
 };
 
