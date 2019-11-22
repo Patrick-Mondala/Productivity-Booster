@@ -49,8 +49,10 @@ Healthbar.prototype.loseHp = function () {
 
 Healthbar.prototype.gainHp = function () {
   const ctx = this.performanceCtx;
-  this.hp += 1;
-  this.draw(ctx);
+  if (this.hp < 8) {
+    this.hp += 1;
+    this.draw(ctx);
+  }
 }
 
 module.exports = Healthbar;

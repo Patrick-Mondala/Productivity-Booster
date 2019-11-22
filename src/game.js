@@ -33,10 +33,10 @@ Game.prototype.draw = function () {
   let currentGame = this;
   const background = new Image();
   background.onload = function () {
-    currentGame.backgroundCtx.drawImage(background, 0, 0, 1024, 682, 0, 0, 1000, 550);
+    currentGame.backgroundCtx.drawImage(background, 0, 0, 2560, 1600, 0, 0, 1000, 550);
     currentGame.performanceObj.draw(currentGame.performanceCtx);
   };
-  background.src = "background.jpg";
+  background.src = "macwallpaper.jpg";
 }
 
 module.exports = Game;

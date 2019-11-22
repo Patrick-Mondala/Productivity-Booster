@@ -29,7 +29,11 @@ Target.prototype.draw = function (ctx, timer, clickedSize) {
   if (this.size < 2) {
     ctx.clearRect(x - 2, y - 2, (clickedSize || 0) + 5, (clickedSize || 0) + 5);
     delete this.performance.targets[this.id];
-    if (!clickedSize) this.health.loseHp();
+    if (!clickedSize) {
+      this.health.loseHp();
+      this.accuracy.addMiss();
+      this.combo.resetCombo();
+    }
     delete target;
     clearInterval(timer);
   } else {
@@ -50,7 +54,7 @@ Target.prototype.spawn = function (ctx) {
     if (growthDirection === "out") {
       if (target.size % 2 === 0) target.pos = [target.pos[0] - 1, target.pos[1] - 1];
       target.size += 1;
-      if (target.size > 60) growthDirection = "in";
+      if (target.size > 90) growthDirection = "in";
     } else {
       if (target.size % 2 === 0) target.pos = [target.pos[0] + 1, target.pos[1] + 1];
       target.size -= 1;

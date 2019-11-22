@@ -4,24 +4,23 @@ function TargetSpawner(gameCtx, performance, timer) {
   this.gameCtx = gameCtx;
   this.performance = performance;
   this.timer = timer;
-  this.targetsSpawned = 0;
 }
 
 TargetSpawner.prototype.start = function () {
   let spawnInterval = setInterval(() => {
     this.spawnTarget();
-  }, 700 - this.timer.seconds);
+  }, Math.floor(Math.random() * 5000) + 1000);
 };
 
 const getRandomPosition = () => (
-  [Math.floor(Math.random() * 950) + 30, Math.floor(Math.random() * 400) + 100]
+  [Math.floor(Math.random() * 950) + 30, Math.floor(Math.random() * 380) + 110]
 ) 
 
 TargetSpawner.prototype.spawnTarget = function () {
-  let newTarget = new Target(this.targetsSpawned, getRandomPosition(), this.performance.combo, this.performance.accuracy, this.performance.healthbar, this.performance);
+  let newTarget = new Target(this.performance.targetsSpawned, getRandomPosition(), this.performance.combo, this.performance.accuracy, this.performance.healthbar, this.performance);
   newTarget.spawn(this.gameCtx);
-  this.performance.targets[this.targetsSpawned] = newTarget;
-  this.targetsSpawned += 1;
+  this.performance.targets[this.performance.targetsSpawned] = newTarget;
+  this.performance.targetsSpawned += 1;
 };
 
 module.exports = TargetSpawner;
