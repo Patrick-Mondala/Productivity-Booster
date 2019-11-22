@@ -2,6 +2,7 @@ function Accuracy(performanceCtx) {
   this.totalTargets = 0;
   this.totalHits = 0;
   this.totalMisses = 0;
+  this.stopped = false;
   this.performanceCtx = performanceCtx;
 }
 
@@ -15,8 +16,10 @@ Accuracy.prototype.draw = function () {
   const ctx = this.performanceCtx;
   ctx.font = "40px Arial";
   ctx.fillStyle = "white";
-  ctx.clearRect(820, 70, 200, 32);
-  ctx.fillText(`${this.getAccuracy()}%`, 850, 100);
+  if (!this.stopped) {
+    ctx.clearRect(820, 70, 200, 32);
+    ctx.fillText(`${this.getAccuracy()}%`, 850, 100);
+  }
 };
 
 Accuracy.prototype.addTarget = function () {

@@ -4,6 +4,7 @@ function TargetSpawner(gameCtx, performance, timer) {
   this.gameCtx = gameCtx;
   this.performance = performance;
   this.timer = timer;
+  this.stopped = false;
 }
 
 TargetSpawner.prototype.start = function () {

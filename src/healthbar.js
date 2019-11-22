@@ -46,6 +46,7 @@ Healthbar.prototype.loseHp = function () {
   this.draw(ctx);
   if (this.hp < 1) {
     this.performanceObj.timer.stopped = true;
+    this.performanceObj.accuracy.stopped = true;
   }
 }
 
