@@ -1,5 +1,6 @@
 function Timer() {
   this.seconds = 0;
+  this.stopped = false;
   this.secToDisplay = function () {
     let minutes = Math.floor(this.seconds / 60);
     let seconds = this.seconds % 60;
@@ -15,12 +16,14 @@ function Timer() {
 Timer.prototype.draw = function (ctx) {
   let timerObj = this;
   var timer = setInterval(function () {
-    timerObj.seconds += 1
-    ctx.font = "60px Arial";
-    ctx.fillStyle = "white";
-    ctx.clearRect(845, 0, 200, 60);
-    ctx.fillText(`${timerObj.secToDisplay()}`, 845, 50);
-  }, 1000);
+    if (!timerObj.stopped) {
+      timerObj.seconds += 1
+      ctx.font = "60px Arial";
+      ctx.fillStyle = "white";
+      ctx.clearRect(845, 0, 200, 60);
+      ctx.fillText(`${timerObj.secToDisplay()}`, 845, 50);
+    }
+    }, 1000);
 };
 
 module.exports = Timer;

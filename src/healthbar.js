@@ -1,6 +1,7 @@
-function Healthbar(performanceCtx) {
+function Healthbar(performanceCtx, performanceObj) {
   this.hp = 8;
   this.performanceCtx = performanceCtx;
+  this.performanceObj = performanceObj;
 }
 
 const healthbar = new Image();
@@ -24,10 +25,8 @@ Healthbar.prototype.getBar = function () {
       return [0, 530];
     case 1:
       return [0, 580];
-    case 0:
-      return [0, 630];
     default:
-      return [0,0];
+      return [0, 630];
   };
 }
 
@@ -45,6 +44,9 @@ Healthbar.prototype.loseHp = function () {
   const ctx = this.performanceCtx;
   this.hp -= 1;
   this.draw(ctx);
+  if (this.hp < 1) {
+    this.performanceObj.timer.stopped = true;
+  }
 }
 
 Healthbar.prototype.gainHp = function () {

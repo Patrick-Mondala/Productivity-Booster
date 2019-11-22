@@ -6,7 +6,7 @@ const TargetSpawner = require("./targetSpawner");
 
 function Performance(gameCtx, performanceCtx) {
   this.gameCtx = gameCtx;
-  this.healthbar = new Healthbar(performanceCtx);
+  this.healthbar = new Healthbar(performanceCtx, this);
   this.combo = new Combo(performanceCtx, this.healthbar);
   this.timer = new Timer();
   this.accuracy = new Accuracy(performanceCtx);

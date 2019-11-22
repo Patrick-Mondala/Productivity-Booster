@@ -9,7 +9,7 @@ function TargetSpawner(gameCtx, performance, timer) {
 TargetSpawner.prototype.start = function () {
   let spawnInterval = setInterval(() => {
     this.spawnTarget();
-  }, Math.floor(Math.random() * 5000) + 1000);
+  }, Math.floor(Math.random() * 10000) + 1000);
 };
 
 const getRandomPosition = () => (

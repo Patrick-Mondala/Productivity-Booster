@@ -54,7 +54,7 @@ Target.prototype.spawn = function (ctx) {
     if (growthDirection === "out") {
       if (target.size % 2 === 0) target.pos = [target.pos[0] - 1, target.pos[1] - 1];
       target.size += 1;
-      if (target.size > 90) growthDirection = "in";
+      if (target.size > 100) growthDirection = "in";
     } else {
       if (target.size % 2 === 0) target.pos = [target.pos[0] + 1, target.pos[1] + 1];
       target.size -= 1;
